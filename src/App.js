@@ -1,4 +1,4 @@
-import {Routes, Route} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import About from './pages/about.js';
 import Home from "./pages/home.js";
 import Subject from "./pages/subject";
@@ -16,7 +16,7 @@ function App(){
             backgroundRepeat: 'no-repeat',
             width: '100vw',
             height: '100vh',
-            }}>
+        }}>
             <Particles options={{
                 fpsLimit: 60,
                 interactivity: {
@@ -91,7 +91,7 @@ function App(){
             }}
             />
             <Routes>
-                <Route path='/' element = {<Home baseurl = {baseURL}/>}/>
+                <Route exact path='/' element = {<Home baseurl = {baseURL}/>}/>
                 <Route path='/about' element={<About/>} />
                 <Route path='/subject/:code' element={<Subject baseurl = {baseURL}/>} />
                 <Route path='/search/:name' element={<Search baseurl = {baseURL}/>} />

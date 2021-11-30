@@ -75,7 +75,7 @@ function Home(props){
                     }
 
                 }}
-                onRequestSearch={(value) => window.open("/search/" + value)}
+                onRequestSearch={(value) => window.open("/#/search/" + value)}
                 style={{
                     margin: '0 auto',
                     maxWidth: 800,
@@ -86,7 +86,7 @@ function Home(props){
             />}
             {names != null && <Stack spacing={25} direction="row" alignItems="center" justifyContent="center" marginTop = {7}>
                 <ColorButton variant="contained" href="https://handbook.unimelb.edu.au/search">Official Handbook</ColorButton>
-                <ColorButton variant="contained" href="about">About</ColorButton>
+                <ColorButton variant="contained" href="/#/about">About</ColorButton>
             </Stack>}
 
         </div>

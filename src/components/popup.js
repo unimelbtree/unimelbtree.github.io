@@ -12,7 +12,7 @@ function Popup(props){
     }));
 
     function textAsButton(d){
-        return <ColorButton href={"/subject/" + d} target={"_blank"}>{d}</ColorButton>
+        return <ColorButton href={"/#/subject/" + d} target={"_blank"}>{d}</ColorButton>
     }
 
     return (
