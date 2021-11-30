@@ -96,7 +96,7 @@ function Subject(props){
                     <div className={"wrapper"}>
                         <h4 className={"loading"}>Click on each node to view its "child" subjects!</h4>
                     </div>
-                    <div style={{ width: '90vw', height: '80vh', alignItems: "center"}}>
+                    <div style={{ width: '90vw', height: '80vh', backgroundColor: "transparent"}}>
                         {<Tree
                             pathFunc={"diagonal"}
                             data={tree}
