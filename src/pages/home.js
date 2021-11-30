@@ -75,7 +75,14 @@ function Home(props){
                     }
 
                 }}
-                onRequestSearch={(value) => window.open("/#/search/" + value)}
+                onRequestSearch={(value) => {
+                    const regex = /[a-zA-Z0-9]/;
+                    if(!regex.test(value)){
+                        alert("Empty search values are not allowed")
+                    }else{
+                        window.open("/#/search/" + value)}
+                    }
+                }
                 style={{
                     margin: '0 auto',
                     maxWidth: 800,

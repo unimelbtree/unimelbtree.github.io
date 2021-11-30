@@ -94,7 +94,7 @@ function Subject(props){
                         <ColorButton variant="contained" href={"https://handbook.unimelb.edu.au/2022/subjects/" + subject["code"]} target={"_blank"}>Official Handbook Link</ColorButton>
                     </div>
                     <div className={"wrapper"}>
-                        <h4 className={"loading"}>Click on each node to view its "child" subjects!</h4>
+                        <h4 className={"loading"}>Click on each node to view possible subject paths!</h4>
                     </div>
                     <div style={{ width: '90vw', height: '80vh', backgroundColor: "transparent"}}>
                         {<Tree
