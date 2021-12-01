@@ -7,6 +7,7 @@ import axios from "axios";
 function Search(props){
     const {name} = useParams();
     const [result, setResult] = useState(null);
+    const[isCode, setIsCode] = useState(null);
 
     function renderAll(result){
         if(result == null){
@@ -29,27 +30,54 @@ function Search(props){
                 </div>
             );
         }else{
-            return (
-                <div>
-                    <div className={"wrapper"}>
-                        <h1 className={"searchTitle"}>Search results for: {name}</h1>
+            if(isCode === true){
+                return (
+                    <div>
+                        <div className={"wrapper"}>
+                            <h1 className={"searchTitle"}>Search results for: {name} (subject code detected)</h1>
+                        </div>
+                        <div className="wrapper" style={{
+                            marginTop: 50
+                        }}>
+                            <SearchBox
+                                dataSource={result}
+                            />
+                        </div>
                     </div>
-                    <div className="wrapper" style={{
-                        marginTop: 50
-                    }}>
-                        <SearchBox
-                            dataSource={result}
-                        />
+                );
+            }else{
+                return (
+                    <div>
+                        <div className={"wrapper"}>
+                            <h1 className={"searchTitle"}>Search results for: {name}</h1>
+                        </div>
+                        <div className="wrapper" style={{
+                            marginTop: 50
+                        }}>
+                            <SearchBox
+                                dataSource={result}
+                            />
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            }
+
         }
     }
 
     useEffect(() => {
-       axios.get(props.baseurl + "/api/match/" + name).then((response)=>{
-           setResult(response.data);
-       })
+        const regex = /[A-Za-z]{4}[0-9]{2,5}/
+        if(regex.test(name)){
+            axios.get(props.baseurl + "/api/code/match/" + name).then((response)=>{
+                setIsCode(true);
+                setResult(response.data);
+            })
+        }else{
+            axios.get(props.baseurl + "/api/match/" + name).then((response)=>{
+                setIsCode(false);
+                setResult(response.data);
+            })
+        }
     }, []);
 
     return (

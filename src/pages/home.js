@@ -14,7 +14,7 @@ function Home(props){
     let [names, setNames] = useState(null);
 
     useEffect(() =>{
-        axios.get(baseURL + "/api/all_codes").then((response) => {
+        axios.get(baseURL + "/api/code/all").then((response) => {
             setNames(response.data);
         });
     }, []);
@@ -79,7 +79,10 @@ function Home(props){
                     const regex = /[a-zA-Z0-9]/;
                     if(!regex.test(value)){
                         alert("Empty search values are not allowed")
-                    }else{
+                    }else if(value.length > 30){
+                        alert("Search is too long")
+                    }
+                    else{
                         window.open("/#/search/" + value)}
                     }
                 }

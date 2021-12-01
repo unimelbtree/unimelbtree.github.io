@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import { styled } from '@mui/material/styles';
 
 function Popup(props){
+    let isOpen = props.isOpen;
+
     const ColorButton = styled(Button)(({ theme }) => ({
         color: theme.palette.getContrastText('#ffffff'),
         backgroundColor: '#ffffff',
@@ -15,11 +17,15 @@ function Popup(props){
         return <ColorButton href={"/#/subject/" + d} target={"_blank"}>{d}</ColorButton>
     }
 
+    if(props.dataSource.length === 0){
+        isOpen = false;
+    }
+
     return (
         <div>
             <Popper
                 id={"search-popup"}
-                open={props.isOpen}
+                open={isOpen}
                 anchorEl = {document.getElementById("bruh")}
                 placement= "auto-start"
             >
@@ -33,7 +39,7 @@ function Popup(props){
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                    maxHeight: "60vh",
+                    maxHeight: "55vh",
                     overflow: "auto"
                 }}
                      boxShadow={3}
