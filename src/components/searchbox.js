@@ -9,8 +9,7 @@ function SearchBox(props){
         return <ListItem>
                 <ListItemButton
                     component="a"
-                    href={window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/#/subject/" + elem["obj"]["code"]}
-                    target={"_blank"}>
+                    href={window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/#/subject/" + elem["obj"]["code"]}>
                     <ListItemText primary={elem["obj"]["name"]} secondary={elem["obj"]["code"]} />
                 </ListItemButton>
             </ListItem>

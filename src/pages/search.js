@@ -66,18 +66,21 @@ function Search(props){
     }
 
     useEffect(() => {
-        const regex = /[A-Za-z]{4}[0-9]{2,5}/
-        if(regex.test(name)){
-            axios.get(props.baseurl + "/api/code/match/" + name).then((response)=>{
-                setIsCode(true);
-                setResult(response.data);
-            })
-        }else{
-            axios.get(props.baseurl + "/api/match/" + name).then((response)=>{
-                setIsCode(false);
-                setResult(response.data);
-            })
-        }
+        axios.get(props.baseurl + "/api/code/all_codes").then((response) => {
+            const regex = /[A-Za-z]{4}[0-9]{1,5}/
+            if((name.length === 4 && response.data.includes(name.toLowerCase())) ||
+                (name.length > 4) && regex.test(name) && response.data.includes(name.toLowerCase().slice(0, 4))){
+                axios.get(props.baseurl + "/api/code/match/" + name).then((response)=>{
+                    setIsCode(true);
+                    setResult(response.data);
+                })
+            }else{
+                axios.get(props.baseurl + "/api/match/" + name).then((response)=>{
+                    setIsCode(false);
+                    setResult(response.data);
+                })
+            }
+        })
     }, []);
 
     return (

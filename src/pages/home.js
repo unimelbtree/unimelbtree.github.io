@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { styled } from '@mui/material/styles';
 import axios from "axios";
+import Sound from "react-sound";
+import WiiTheme from "../music/wiitheme.mp3"
 
 function Home(props){
     const baseURL = props.baseurl;
@@ -12,6 +14,7 @@ function Home(props){
     let [state, setState] = useState({dataSource: []});
     let [isOpen, setOpen] = useState(false);
     let [names, setNames] = useState(null);
+    let [musicState, setMusicState] = useState(false);
 
     useEffect(() =>{
         axios.get(baseURL + "/api/code/all").then((response) => {
@@ -54,6 +57,12 @@ function Home(props){
 
     return (
         <div>
+            <Sound
+                url={WiiTheme}
+                playStatus={(musicState) ? Sound.status.PLAYING : Sound.status.PAUSED}
+                volume={15}
+                loop={true}
+            />
             <Popup dataSource = {state.dataSource} isOpen = {isOpen} />
             <div className="wrapper">
                 <div className="image">
@@ -61,6 +70,10 @@ function Home(props){
                     <h1 className="logo">Subject Tree</h1>
                 </div>
             </div>
+
+            {names == null && <div className={"wrapper"}>
+                <h1 className={"loading"}>Page loading... Please wait</h1>
+            </div>}
 
             {names != null && <SearchBar
                 id ={"bruh"}
@@ -79,11 +92,11 @@ function Home(props){
                     const regex = /[a-zA-Z0-9]/;
                     if(!regex.test(value)){
                         alert("Empty search values are not allowed")
-                    }else if(value.length > 30){
+                    }else if(value.length > 40){
                         alert("Search is too long")
                     }
                     else{
-                        window.open("/#/search/" + value)}
+                        window.open("/#/search/" + value, "_self")}
                     }
                 }
                 style={{
@@ -95,8 +108,9 @@ function Home(props){
                 }}
             />}
             {names != null && <Stack spacing={25} direction="row" alignItems="center" justifyContent="center" marginTop = {7}>
-                <ColorButton variant="contained" href="https://handbook.unimelb.edu.au/search">Official Handbook</ColorButton>
+                <ColorButton variant="contained" href="https://handbook.unimelb.edu.au/search" target={"_blank"}>Official Handbook</ColorButton>
                 <ColorButton variant="contained" href="/#/about">About</ColorButton>
+                <ColorButton variant={"contained"} onClick={() => setMusicState(!musicState)}>{(musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
             </Stack>}
 
         </div>
