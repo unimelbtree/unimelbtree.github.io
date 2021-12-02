@@ -15,7 +15,7 @@ function About(){
         <div className="wrapper2">
             <h2 className="body">Site is maintained by Bowen</h2>
             <h2 className="body">Built using React + Material UI</h2>
-            <ColorButton variant="contained" href="/">Go back</ColorButton>
+            <ColorButton variant="contained" href="/#">Go back</ColorButton>
         </div>
     );
 }
