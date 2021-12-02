@@ -103,8 +103,8 @@ function App(){
             <Routes>
                 <Route exact path='/' element = {<Home baseurl = {baseURL} setMusicState={() => {setMusicState(!musicState)}} musicState={musicState}/>}/>
                 <Route path='/about' element={<About/>} />
-                <Route path='/subject/:code' element={<Subject baseurl = {baseURL}/>} />
-                <Route path='/search/:name' element={<Search baseurl = {baseURL}/>} />
+                <Route path='/subject/:code' element={<Subject baseurl = {baseURL} setMusicState={() => {setMusicState(!musicState)}} musicState={musicState}/>} />
+                <Route path='/search/:name' element={<Search baseurl = {baseURL} setMusicState={() => {setMusicState(!musicState)}} musicState={musicState}/>} />
             </Routes>
         </div>
     );

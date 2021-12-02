@@ -4,11 +4,21 @@ import {useParams} from 'react-router-dom';
 import SearchBox from "../components/searchbox";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import {styled} from "@mui/material/styles";
+import Button from "@mui/material/Button";
 
 function Search(props){
     const {name} = useParams();
     const [result, setResult] = useState(null);
     const[isCode, setIsCode] = useState(null);
+
+    const ColorButton = styled(Button)(({ theme }) => ({
+        color: theme.palette.getContrastText('#ffffff'),
+        backgroundColor: '#ffffff',
+        '&:hover': {
+            backgroundColor: '#bdbdbd',
+        },
+    }));
 
     function renderAll(result){
         if(result == null){
@@ -29,10 +39,12 @@ function Search(props){
                     <div className={"wrapper"}>
                         <h1 className={"searchTitle"}>Search results for: {name}</h1>
                     </div>
-                    <div className="wrapper" style={{
-                        marginTop: 50
-                    }}>
+                    <div className="wrapper">
                         <h1 className={"searchTitle"}>No search results returned :(</h1>
+                    </div>
+                    <div className={"wrapperButtons"}>
+                        <ColorButton variant={"contained"} onClick={props.setMusicState}>{(props.musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
+                        <ColorButton variant={"contained"} href={"/#"}>{"Back to Main Page"}</ColorButton>
                     </div>
                 </div>
             );
@@ -43,8 +55,12 @@ function Search(props){
                         <div className={"wrapper"}>
                             <h1 className={"searchTitle"}>Search results for: {name} (subject code detected)</h1>
                         </div>
+                        <div className={"wrapperButtons"}>
+                            <ColorButton variant={"contained"} onClick={props.setMusicState}>{(props.musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
+                            <ColorButton variant={"contained"} href={"/#"}>{"Back to Main Page"}</ColorButton>
+                        </div>
                         <div className="wrapper" style={{
-                            marginTop: 50
+                            marginTop: 30
                         }}>
                             <SearchBox
                                 dataSource={result}

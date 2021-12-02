@@ -118,6 +118,7 @@ function Subject(props){
                         <ColorButton variant="contained" href={"https://handbook.unimelb.edu.au/2022/subjects/" + subject["code"]} target={"_blank"}>Official Handbook Link</ColorButton>
                         <ColorButton variant="contained" onClick={() => {window.location.reload()}}>Reset Subject Tree</ColorButton>
                         <ColorButton variant="contained" href={"/#"}>Back to Main Page</ColorButton>
+                        <ColorButton variant={"contained"} onClick={props.setMusicState}>{(props.musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
                     </div>
                     <div className={"wrapper"}>
                         <h4 className={"loading"}>Click on the white nodes to view further possible subject paths!</h4>

@@ -153,6 +153,15 @@ body, ul {
     margin-top: 3vh;
 }
 
+.wrapperButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5vw;
+    align-items: center;
+    margin-top: 1vh;
+}
+
 .wrapper2 {
     display: flex;
     flex-direction: column;
