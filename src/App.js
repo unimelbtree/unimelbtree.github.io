@@ -4,9 +4,13 @@ import Home from "./pages/home.js";
 import Subject from "./pages/subject";
 import Search from "./pages/search"
 import Particles from "react-tsparticles";
+import {useState} from "react";
+import WiiTheme from "./music/wiitheme.mp3";
+import Sound from "react-sound";
 
 function App(){
     const baseURL = "https://unimelb-subject-tree-backend.ts.r.appspot.com";
+    let [musicState, setMusicState] = useState(false);
 
     return (
         <div style={{
@@ -17,6 +21,12 @@ function App(){
             width: '100vw',
             height: '100vh',
         }}>
+            <Sound
+                url={WiiTheme}
+                playStatus={(musicState) ? Sound.status.PLAYING : Sound.status.PAUSED}
+                volume={15}
+                loop={true}
+            />
             <Particles options={{
                 fpsLimit: 60,
                 interactivity: {
@@ -91,7 +101,7 @@ function App(){
             }}
             />
             <Routes>
-                <Route exact path='/' element = {<Home baseurl = {baseURL}/>}/>
+                <Route exact path='/' element = {<Home baseurl = {baseURL} setMusicState={() => {setMusicState(!musicState)}} musicState={musicState}/>}/>
                 <Route path='/about' element={<About/>} />
                 <Route path='/subject/:code' element={<Subject baseurl = {baseURL}/>} />
                 <Route path='/search/:name' element={<Search baseurl = {baseURL}/>} />

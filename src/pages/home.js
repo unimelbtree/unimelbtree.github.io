@@ -14,7 +14,6 @@ function Home(props){
     let [state, setState] = useState({dataSource: []});
     let [isOpen, setOpen] = useState(false);
     let [names, setNames] = useState(null);
-    let [musicState, setMusicState] = useState(false);
 
     useEffect(() =>{
         axios.get(baseURL + "/api/code/all").then((response) => {
@@ -57,12 +56,6 @@ function Home(props){
 
     return (
         <div>
-            <Sound
-                url={WiiTheme}
-                playStatus={(musicState) ? Sound.status.PLAYING : Sound.status.PAUSED}
-                volume={15}
-                loop={true}
-            />
             <Popup dataSource = {state.dataSource} isOpen = {isOpen} />
             <div className="wrapper">
                 <div className="image">
@@ -110,7 +103,7 @@ function Home(props){
             {names != null && <Stack spacing={25} direction="row" alignItems="center" justifyContent="center" marginTop = {7}>
                 <ColorButton variant="contained" href="https://handbook.unimelb.edu.au/search" target={"_blank"}>Official Handbook</ColorButton>
                 <ColorButton variant="contained" href="/#/about">About</ColorButton>
-                <ColorButton variant={"contained"} onClick={() => setMusicState(!musicState)}>{(musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
+                <ColorButton variant={"contained"} onClick={props.setMusicState}>{(props.musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
             </Stack>}
 
         </div>
