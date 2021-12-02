@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { styled } from '@mui/material/styles';
 import axios from "axios";
-import Sound from "react-sound";
-import WiiTheme from "../music/wiitheme.mp3"
+import ReactLoading from 'react-loading'
 
 function Home(props){
     const baseURL = props.baseurl;
@@ -64,9 +63,16 @@ function Home(props){
                 </div>
             </div>
 
-            {names == null && <div className={"wrapper"}>
-                <h1 className={"loading"}>Page loading... Please wait</h1>
-            </div>}
+            {names == null &&
+                <div>
+                    <div className={"wrapper"}>
+                        <ReactLoading type={"spinningBubbles"} color={"white"} />
+                    </div>
+                    <div className={"wrapper"}>
+                        <h1 className={"loading"}>Page loading... Please wait</h1>
+                    </div>
+                </div>
+            }
 
             {names != null && <SearchBar
                 id ={"bruh"}

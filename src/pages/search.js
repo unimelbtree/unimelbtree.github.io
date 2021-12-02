@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import {useParams} from 'react-router-dom';
 import SearchBox from "../components/searchbox";
 import axios from "axios";
+import ReactLoading from "react-loading";
 
 function Search(props){
     const {name} = useParams();
@@ -12,9 +13,15 @@ function Search(props){
     function renderAll(result){
         if(result == null){
             return (
-                <div className={"wrapper"}>
-                    <h1 className={"searchTitle"}>Searching...</h1>
+                <div>
+                    <div className={"wrapper"}>
+                        <h1 className={"searchTitle"}>Searching...</h1>
+                    </div>
+                    <div className={"wrapper"}>
+                        <ReactLoading type={"spinningBubbles"} color={"white"} />
+                    </div>
                 </div>
+
             );
         }else if(result.length === 0){
             return (

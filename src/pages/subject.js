@@ -5,6 +5,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles";
 import Tree from 'react-d3-tree';
+import ReactLoading from "react-loading";
 
 function Subject(props){
     let [tree, setTree] = useState(null);
@@ -85,6 +86,9 @@ function Subject(props){
                         <div className={"wrapper"}>
                             <h3 className={"loading"}>Building tree... Please be patient, subject tree may be extremely large :)</h3>
                         </div>
+                        <div className={"wrapper"}>
+                            <ReactLoading type={"spinningBubbles"} color={"white"} />
+                        </div>
                     </div>
                 );
             }
@@ -113,6 +117,7 @@ function Subject(props){
                     <div className={"wrapperSubjectHandbook"}>
                         <ColorButton variant="contained" href={"https://handbook.unimelb.edu.au/2022/subjects/" + subject["code"]} target={"_blank"}>Official Handbook Link</ColorButton>
                         <ColorButton variant="contained" onClick={() => {window.location.reload()}}>Reset Subject Tree</ColorButton>
+                        <ColorButton variant="contained" href={"/#"}>Back to Main Page</ColorButton>
                     </div>
                     <div className={"wrapper"}>
                         <h4 className={"loading"}>Click on the white nodes to view further possible subject paths!</h4>

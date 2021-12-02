@@ -17,7 +17,7 @@ function App(){
             backgroundImage: "linear-gradient(to right, #4880EC, #019CAD)",
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
+            backgroundRepeat: 'repeat',
             width: '100vw',
             height: '100vh',
         }}>
