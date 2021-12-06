@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import {useEffect, useState, useCallback} from "react";
 import axios from "axios";
@@ -6,9 +6,11 @@ import Button from "@mui/material/Button";
 import {styled} from "@mui/material/styles";
 import Tree from 'react-d3-tree';
 import ReactLoading from "react-loading";
+import {musicContext} from "../context/musicContext";
 
 function Subject(props){
     let [tree, setTree] = useState(null);
+    const [musicState, setMusicState] = useContext(musicContext);
 
     let subjects = [];
 
@@ -118,7 +120,7 @@ function Subject(props){
                         <ColorButton variant="contained" href={"https://handbook.unimelb.edu.au/2022/subjects/" + subject["code"]} target={"_blank"}>Official Handbook Link</ColorButton>
                         <ColorButton variant="contained" onClick={() => {window.location.reload()}}>Reset Subject Tree</ColorButton>
                         <ColorButton variant="contained" href={"/#"}>Back to Main Page</ColorButton>
-                        <ColorButton variant={"contained"} onClick={props.setMusicState}>{(props.musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
+                        <ColorButton variant={"contained"} onClick={() => setMusicState(!musicState)}>{(musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
                     </div>
                     <div className={"wrapper"}>
                         <h4 className={"loading"}>Click on the white nodes to view further possible subject paths!</h4>

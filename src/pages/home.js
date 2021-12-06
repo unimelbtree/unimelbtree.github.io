@@ -1,11 +1,12 @@
 import Popup from "../components/popup";
-import { useState, useEffect } from 'react'
+import {useState, useEffect, useContext} from 'react'
 import SearchBar from "material-ui-search-bar";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { styled } from '@mui/material/styles';
 import axios from "axios";
 import ReactLoading from 'react-loading'
+import {musicContext} from "../context/musicContext";
 
 function Home(props){
     const baseURL = props.baseurl;
@@ -13,6 +14,7 @@ function Home(props){
     let [state, setState] = useState({dataSource: []});
     let [isOpen, setOpen] = useState(false);
     let [names, setNames] = useState(null);
+    const [musicState, setMusicState] = useContext(musicContext);
 
     useEffect(() =>{
         axios.get(baseURL + "/api/code/all").then((response) => {
@@ -109,7 +111,7 @@ function Home(props){
             {names != null && <Stack spacing={25} direction="row" alignItems="center" justifyContent="center" marginTop = {7}>
                 <ColorButton variant="contained" href="https://handbook.unimelb.edu.au/search" target={"_blank"}>Official Handbook</ColorButton>
                 <ColorButton variant="contained" href="/#/about">About</ColorButton>
-                <ColorButton variant={"contained"} onClick={props.setMusicState}>{(props.musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
+                <ColorButton variant={"contained"} onClick={() => setMusicState(!musicState)}>{(musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
             </Stack>}
 
         </div>
