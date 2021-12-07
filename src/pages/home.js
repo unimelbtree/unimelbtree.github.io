@@ -56,13 +56,15 @@ function Home(props){
     }));
 
     var fontsize = Math.round(window.innerWidth * 0.17);
+    var imgsize = Math.round(window.innerWidth * 0.3);
 
     return (
         <div>
             <Popup dataSource = {state.dataSource} isOpen = {isOpen} />
             <div className="wrapper">
                 <div className="image">
-                    <img src="https://i.pinimg.com/originals/9c/a8/d3/9ca8d301a7e109449bf480a11c09d4cc.png" width={150} height={150}/>
+                    <img src="https://i.pinimg.com/originals/9c/a8/d3/9ca8d301a7e109449bf480a11c09d4cc.png"
+                         width={imgsize <= 150 ? imgsize : 150} height={imgsize <= 150 ? imgsize : 150}/>
                     <h1 className="logo" style={
                         {
                             marginLeft: props.isMobile ? "0vw" : "3vw",
