@@ -55,6 +55,8 @@ function Home(props){
         },
     }));
 
+    var fontsize = Math.round(window.innerWidth * 0.17).toString() + "px";
+
     return (
         <div>
             <Popup dataSource = {state.dataSource} isOpen = {isOpen} />
@@ -64,7 +66,7 @@ function Home(props){
                     <h1 className="logo" style={
                         {
                             marginLeft: props.isMobile ? "0vw" : "3vw",
-                            fontSize: props.isMobile ? "70px" : "80px"
+                            fontSize: props.isMobile ? fontsize : "80px"
                         }
                     }>Subject Tree</h1>
                 </div>
