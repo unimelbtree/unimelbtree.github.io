@@ -4,7 +4,7 @@ import Home from "./pages/home.js";
 import Subject from "./pages/subject";
 import Search from "./pages/search"
 import Particles from "react-tsparticles";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import WiiTheme from "./music/wiitheme.mp3";
 import Sound from "react-sound";
 import {musicContext} from "./context/musicContext";
@@ -12,6 +12,21 @@ import {musicContext} from "./context/musicContext";
 function App(){
     const baseURL = "https://unimelb-subject-tree-backend.ts.r.appspot.com";
     let [musicState, setMusicState] = useState(false);
+
+    const [width, setWidth] = useState(window.innerWidth);
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+    const isMobile = width <= 768;
 
     return (
         <div style={{
@@ -103,7 +118,7 @@ function App(){
                 }}
                 />
                 <Routes>
-                    <Route exact path='/' element = {<Home baseurl = {baseURL}/>}/>
+                    <Route exact path='/' element = {<Home baseurl = {baseURL} isMobile = {isMobile}/>}/>
                     <Route path='/about' element={<About/>} />
                     <Route path='/subject/:code' element={<Subject baseurl = {baseURL}/>} />
                     <Route path='/search/:name' element={<Search baseurl = {baseURL}/>} />

@@ -61,7 +61,12 @@ function Home(props){
             <div className="wrapper">
                 <div className="image">
                     <img src="https://i.pinimg.com/originals/9c/a8/d3/9ca8d301a7e109449bf480a11c09d4cc.png" width={150} height={150}/>
-                    <h1 className="logo">Subject Tree</h1>
+                    <h1 className="logo" style={
+                        {
+                            marginLeft: props.isMobile ? "0vw" : "3vw",
+                            fontSize: props.isMobile ? "70px" : "80px"
+                        }
+                    }>Subject Tree</h1>
                 </div>
             </div>
 
@@ -108,11 +113,11 @@ function Home(props){
                     border: "1px solid black"
                 }}
             />}
-            {names != null && <Stack spacing={25} direction="row" alignItems="center" justifyContent="center" marginTop = {7}>
+            {names != null && <div className={"wrapperHomepage"}>
                 <ColorButton variant="contained" href="https://handbook.unimelb.edu.au/search" target={"_blank"}>Official Handbook</ColorButton>
                 <ColorButton variant="contained" href="/#/about">About</ColorButton>
                 <ColorButton variant={"contained"} onClick={() => setMusicState(!musicState)}>{(musicState) ? "Play music: ON" : "Play music: OFF"}</ColorButton>
-            </Stack>}
+            </div>}
 
         </div>
     );
