@@ -55,7 +55,7 @@ function Home(props){
         },
     }));
 
-    var fontsize = Math.round(window.innerWidth * 0.17).toString() + "px";
+    var fontsize = Math.round(window.innerWidth * 0.17);
 
     return (
         <div>
@@ -66,7 +66,7 @@ function Home(props){
                     <h1 className="logo" style={
                         {
                             marginLeft: props.isMobile ? "0vw" : "3vw",
-                            fontSize: props.isMobile ? fontsize : "80px"
+                            fontSize: props.isMobile && fontsize <= 80 ? fontsize.toString() + "px" : "80px"
                         }
                     }>Subject Tree</h1>
                 </div>
