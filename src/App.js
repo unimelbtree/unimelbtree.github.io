@@ -30,7 +30,7 @@ function App(){
     var bgHeight = "";
 
     if(window.innerHeight < 500){
-        bgHeight = "150vh"
+        bgHeight = "180vh"
     }else{
         bgHeight = "100vh"
     }

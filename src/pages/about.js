@@ -13,7 +13,7 @@ function About(){
 
     return (
         <div className="wrapper2">
-            <h2 className="body">Site is maintained by Bowen. Shoutout to Kasie for random ideas</h2>
+            <h2 className="body">Site is maintained by Bowen. Shoutout to kasie for random ideas</h2>
             <h2 className="body">Built using React + Material UI</h2>
             <ColorButton variant="contained" href="/#">Go back</ColorButton>
         </div>
