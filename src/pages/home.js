@@ -55,8 +55,6 @@ function Home(props){
         },
     }));
 
-    alert("X: " + window.innerWidth + " Y: " + window.innerHeight);
-
     var fontsize = Math.round(window.innerWidth * 0.17);
     var imgsize = Math.round(window.innerWidth * 0.3);
 

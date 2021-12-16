@@ -27,6 +27,13 @@ function App(){
     }, []);
 
     const isMobile = width <= 768;
+    var bgHeight = "";
+
+    if(window.innerHeight < 500){
+        bgHeight = "150vh"
+    }else{
+        bgHeight = "100vh"
+    }
 
     return (
         <div style={{
@@ -35,7 +42,7 @@ function App(){
             backgroundSize: 'cover',
             backgroundRepeat: 'repeat',
             width: '100vw',
-            height: '100vh',
+            height: bgHeight,
         }}>
             <musicContext.Provider value={[musicState, setMusicState]}>
                 <Sound
