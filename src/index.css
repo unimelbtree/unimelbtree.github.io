@@ -123,6 +123,14 @@
     font-family: "Avenir Next Cyr Thin", sans-serif;
 }
 
+.navbar-text{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: "Avenir Next Cyr Thin", sans-serif;
+    margin-left: 1vh
+}
+
 .searchTitle{
     text-align: center;
     color: white;
